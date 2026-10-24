@@ -1,7 +1,7 @@
 import uuid
 
 from django.core.validators import MinValueValidator
-from django.db import models
+from django.db import models, transaction
 
 
 class Category(models.Model):
@@ -64,3 +64,75 @@ class Products(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class OrderCounter(models.Model):
+    last_number = models.PositiveBigIntegerField(default=0)
+
+
+class Order(models.Model):
+    class PaymentChoices(models.TextChoices):
+        CARD = 'card', 'Картой'
+        CASH = 'cash', 'Наличными'
+
+    id = models.CharField(
+        primary_key=True,
+        max_length=36,
+        editable=False,
+    )
+    number = models.PositiveBigIntegerField(
+        unique=True,
+        editable=False,
+    )
+    payment = models.CharField(
+        verbose_name='Способ оплаты',
+        max_length=4,
+        choices=PaymentChoices.choices,
+    )
+    email = models.EmailField(
+        verbose_name='email',
+        max_length=30
+    )
+    phone = models.CharField(
+        verbose_name='Номер телефона',
+        max_length=20
+    )
+    address = models.CharField(
+        verbose_name='Адрес доставки',
+        max_length=255
+    )
+    total = models.PositiveIntegerField(
+        verbose_name='Стоимость заказа',
+    )
+    items = models.ManyToManyField(
+        Products,
+        verbose_name='Товары в заказе',
+        related_name='orders'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.id = str(uuid.uuid4())
+        if self._state.adding:
+            with transaction.atomic():
+                counter = (
+                    OrderCounter.objects
+                    .select_for_update()
+                    .get(pk=1)
+                )
+
+                counter.last_number += 1
+                counter.save(update_fields=['last_number'])
+
+                self.number = counter.last_number
+
+                return super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
+    def __str__(self):
+        return f'Заказ №{self.number}'

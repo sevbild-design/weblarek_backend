@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from products.models import Category, Products
+from products.models import Category, Products, Order, OrderCounter
 
 
 @admin.register(Category)
@@ -29,3 +29,17 @@ class ProductsAdmin(admin.ModelAdmin):
             ]
         }),
     )
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = (
+        'number',
+        'total',
+        'id',
+        'created_at'
+    )
+# @admin.register(OrderCounter)
+# class OrderCounterAdmin(admin.ModelAdmin):
+#     list_display = (
+#         'last_number',
+#     )
