@@ -10,7 +10,6 @@ router_v1.register(
     basename='order'
     )
 
-router_v1 = DefaultRouter()
 router_v1.register(
     'product',
     ProductsViewSet,

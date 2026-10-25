@@ -1,0 +1,189 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "софт-скил"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "другое"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "дополнительное"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "кнопка"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 5,
+  "fields": {
+    "name": "хард-скил"
+  }
+},
+{
+  "model": "products.products",
+  "pk": "400ac6c0-abdd-4a2a-883c-41eb3fc8c49f",
+  "fields": {
+    "description": "Откройте эти куки, чтобы узнать, какой фреймворк вы должны изучить дальше.",
+    "image": "/Soft_Flower.avif",
+    "title": "Фреймворк куки судьбы",
+    "category": 3,
+    "price": 2500
+  }
+},
+{
+  "model": "products.products",
+  "pk": "5de13a28-16bf-4173-9fb0-4d1aa92d59b5",
+  "fields": {
+    "description": "Если планируете решать задачи в тренажёре, берите два.",
+    "image": "/5_Dots.avif",
+    "title": "+1 час в сутках",
+    "category": 1,
+    "price": 750
+  }
+},
+{
+  "model": "products.products",
+  "pk": "73f565cc-98d1-4d99-a701-9a68d8f99d53",
+  "fields": {
+    "description": "Если орёт кот, нажмите кнопку.",
+    "image": "/mute-cat.avif",
+    "title": "Кнопка «Замьютить кота»",
+    "category": 4,
+    "price": 2000
+  }
+},
+{
+  "model": "products.products",
+  "pk": "754b4578-19c3-44fb-adc8-13d599582458",
+  "fields": {
+    "description": "Чтобы научиться правильно называть модификаторы, без этого не обойтись.",
+    "image": "/Pill.avif",
+    "title": "БЭМ-пилюлька",
+    "category": 2,
+    "price": 1500
+  }
+},
+{
+  "model": "products.products",
+  "pk": "8662be4a-b766-48bc-a248-14088ce698f2",
+  "fields": {
+    "description": "Измените локацию для поиска работы.",
+    "image": "/Polygon.avif",
+    "title": "Портативный телепорт",
+    "category": 2,
+    "price": 100000
+  }
+},
+{
+  "model": "products.products",
+  "pk": "94a7032f-9a56-454f-ad8c-74a2e47940d4",
+  "fields": {
+    "description": "Будет стоять над душой и не давать прокрастинировать.",
+    "image": "/Asterisk_2.avif",
+    "title": "Мамка-таймер",
+    "category": 1,
+    "price": null
+  }
+},
+{
+  "model": "products.products",
+  "pk": "bd7ae6cf-4d36-4002-96be-c9260b0bc29e",
+  "fields": {
+    "description": "Сжимайте мячик, чтобы снизить стресс от тем по бэкенду.",
+    "image": "/Mithosis.avif",
+    "title": "Бэкенд-антистресс",
+    "category": 2,
+    "price": 1000
+  }
+},
+{
+  "model": "products.products",
+  "pk": "c3dd02cb-91f9-4c85-b2d4-ed5e925f3cd0",
+  "fields": {
+    "description": "Даст время для изучения React, ООП и бэкенда",
+    "image": "/Butterfly.avif",
+    "title": "Микровселенная в кармане",
+    "category": 2,
+    "price": 750
+  }
+},
+{
+  "model": "products.products",
+  "pk": "c7401304-5c9f-4a3f-bda9-199917fbde8f",
+  "fields": {
+    "description": "Очень полезный навык для фронтендера. Без шуток.",
+    "image": "/Leaf.avif",
+    "title": "UI/UX-карандаш",
+    "category": 5,
+    "price": 10000
+  }
+},
+{
+  "model": "products.products",
+  "pk": "ed49e971-0a75-438a-a87f-3f82226c2a0a",
+  "fields": {
+    "description": "Лизните этот леденец, чтобы мгновенно запоминать и узнавать любой цветовой код CSS.",
+    "image": "/Shell.avif",
+    "title": "HEX-леденец",
+    "category": 2,
+    "price": 1450
+  }
+},
+{
+  "model": "products.ordercounter",
+  "pk": 1,
+  "fields": {
+    "last_number": 2
+  }
+},
+{
+  "model": "products.order",
+  "pk": "8c663221-940d-41c9-94e3-e8607a893edd",
+  "fields": {
+    "number": 2,
+    "payment": "cash",
+    "email": "test@test.ru",
+    "phone": "+71234567890",
+    "address": "qwert",
+    "total": 13250,
+    "created_at": "2026-10-24T10:21:37.935Z",
+    "items": [
+      "400ac6c0-abdd-4a2a-883c-41eb3fc8c49f",
+      "5de13a28-16bf-4173-9fb0-4d1aa92d59b5",
+      "c7401304-5c9f-4a3f-bda9-199917fbde8f"
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$wXBFSkrhFRdTeKi3E6Vi7H$LBBCTBEfd5NJ91UNO6wb5jk5at6+qTUuexvKRP02xOE=",
+    "last_login": "2026-10-23T18:51:15.711Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-10-23T18:50:51.740Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

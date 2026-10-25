@@ -1,0 +1,48 @@
+volumes:
+  pg_data:
+  static:
+  media:
+
+services:
+  db:
+    image: postgres:13
+    restart: always
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - '127.0.0.1:5433:5432'
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    image: ${DOCKER_USERNAME}/weblarek_backend:latest
+    restart: always
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - static:/app/collected_static
+      - media:/app/media
+
+    expose:
+      - "8000"
+
+  gateway:
+    image: ${DOCKER_USERNAME}/weblarek_gateway:latest
+    restart: always
+    depends_on:
+      - backend
+
+    ports:
+      - "8000:80"
+
+    volumes:
+      - static:/var/html/static:ro
+      - media:/var/html/media:ro
